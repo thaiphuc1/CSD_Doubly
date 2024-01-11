@@ -29,12 +29,16 @@ public class Node extends CartItem{
 
      public void additem(CartItem b){
         Node newNode = new Node(b);
-        if (head == null) {
+        Node lastNode = head;
+        if(head == null){
             head = newNode;
-        } else {
-            newNode.next = head;
-            head.prev = newNode;
-            head = newNode;
+        }
+        else{
+            while(lastNode.next != null){
+               lastNode = lastNode.next;
+            }
+            lastNode.next = newNode;
+            newNode.prev = lastNode;
         }
         
     }
@@ -73,7 +77,7 @@ public class Node extends CartItem{
         System.out.println("-----------------Your Item list----------------------");
         Node current = head;
         while (current != null) {
-            System.out.println(current.data);
+            System.out.println(current.data.toString());
             current = current.next;
         }
     }
